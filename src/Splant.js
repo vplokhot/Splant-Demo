@@ -44,7 +44,6 @@ export const Splant = () => {
 };
 
 const SplantDisplay = ({ recordings }) => {
-  console.log(recordings, "recordings");
   return (
     <div className="shadow-xl">
       {recordings.map((recording, index) => (
@@ -74,7 +73,7 @@ const SplantDisplayItem = ({ recording }) => {
     // <div className="collapse collapse-arrow bg-neutral shadow-xl">
     //   <input type="radio" name="my-accordion-1" />
     <div>
-      <div className="collapse-title text-xl font-medium shadow-xl">
+      <div className="collapse-title text-xl bg-primary font-medium shadow-xl">
         {name} - {cid ? " Saved" : " Draft"}
       </div>
       {/* <div className="collapse-content shadow-xl"> */}
@@ -92,7 +91,7 @@ const SplantDisplayItem = ({ recording }) => {
         <audio src={url} controls={true} />
         <div className="btn-group">
           <button
-            class="btn btn-info"
+            className="btn btn-info"
             onClick={() => uploadAudio(recording)}
             // disabled={isRecording}
           >
