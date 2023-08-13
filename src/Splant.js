@@ -33,7 +33,7 @@ export const Splant = () => {
               }}
               downloadOnSavePress={false}
               showVisualizer={true}
-              downloadFileExtension="webm"
+              downloadFileExtension="mp3"
             />
           </div>
         </div>
@@ -71,35 +71,37 @@ const SplantDisplayItem = ({ recording }) => {
   }
 
   return (
-    <div className="collapse collapse-arrow bg-neutral shadow-xl">
-      <input type="radio" name="my-accordion-1" />
+    // <div className="collapse collapse-arrow bg-neutral shadow-xl">
+    //   <input type="radio" name="my-accordion-1" />
+    <div>
       <div className="collapse-title text-xl font-medium shadow-xl">
         {name} - {cid ? " Saved" : " Draft"}
       </div>
-      <div className="collapse-content shadow-xl">
-        <div className=" text-xl font-medium">{cid ? cid : null}</div>
+      {/* <div className="collapse-content shadow-xl"> */}
+      <div className=" text-xl font-medium">{cid ? cid : null}</div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-            padding: "20px",
-          }}
-          className="shadow-xl"
-        >
-          <audio src={url} controls={true} />
-          <div className="btn-group">
-            <button
-              class="btn btn-info"
-              onClick={() => uploadAudio(recording)}
-              // disabled={isRecording}
-            >
-              Save
-            </button>
-          </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "20px",
+          padding: "20px",
+        }}
+        // className="shadow-xl"
+      >
+        <audio src={url} controls={true} />
+        <div className="btn-group">
+          <button
+            class="btn btn-info"
+            onClick={() => uploadAudio(recording)}
+            // disabled={isRecording}
+          >
+            Save
+          </button>
         </div>
       </div>
+      {/* </div> */}
+      <br />
     </div>
   );
 };
