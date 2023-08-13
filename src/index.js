@@ -1,13 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Web3StorageProvider } from "./contexts/Web3StorageContext";
+const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Web3StorageProvider accessToken={ACCESS_TOKEN}>
+      <App />
+    </Web3StorageProvider>
   </React.StrictMode>
 );
 
