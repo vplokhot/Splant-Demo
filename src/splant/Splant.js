@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { useWeb3Storage } from "./contexts/Web3StorageContext";
+import { useWeb3Storage } from "../contexts/Web3StorageContext";
+import { Buffer } from "buffer";
 
 import { AudioRecorder } from "react-audio-voice-recorder";
 
@@ -55,28 +56,35 @@ const SplantDisplay = ({ recordings }) => {
 const SplantDisplayItem = ({ recording }) => {
   const { audioData, name } = recording;
   const [cid, setCID] = useState("");
-
   const web3StorageClient = useWeb3Storage();
 
   const url = URL.createObjectURL(audioData);
 
-  async function uploadAudio(blob, name) {
-    const file = new File([blob], `${name}.mp3`);
+  async function uploadAudio(data) {
+    const { audioData, name } = data;
+
+    const file = new File([audioData], `${name}.mp3`);
+
     const cid = await web3StorageClient.store([file]);
 
-    console.log(cid, "cid");
+    const schema = {
+      contentSize: "uint64",
+      mediaType: "Audio",
+      encodingFormat: "Mp3",
+      name,
+      contentHash: cid,
+    };
+
+    console.log(schema, "schema");
     setCID(cid);
     return cid;
   }
 
   return (
-    // <div className="collapse collapse-arrow bg-neutral shadow-xl">
-    //   <input type="radio" name="my-accordion-1" />
     <div>
       <div className="collapse-title text-xl bg-primary font-medium shadow-xl">
         {name} - {cid ? " Saved" : " Draft"}
       </div>
-      {/* <div className="collapse-content shadow-xl"> */}
       <div className=" text-xl font-medium">{cid ? cid : null}</div>
 
       <div
@@ -86,7 +94,6 @@ const SplantDisplayItem = ({ recording }) => {
           marginTop: "20px",
           padding: "20px",
         }}
-        // className="shadow-xl"
       >
         <audio src={url} controls={true} />
         <div className="btn-group">
@@ -99,7 +106,6 @@ const SplantDisplayItem = ({ recording }) => {
           </button>
         </div>
       </div>
-      {/* </div> */}
       <br />
     </div>
   );
