@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { useWeb3Storage } from "../contexts/Web3StorageContext";
+import { useState } from "react";
+import { useWeb3Storage } from "../context/Web3StorageContext";
 import { Buffer } from "buffer";
 
 import { AudioRecorder } from "react-audio-voice-recorder";
@@ -100,7 +100,6 @@ const SplantDisplayItem = ({ recording }) => {
           <button
             className="btn btn-info"
             onClick={() => uploadAudio(recording)}
-            // disabled={isRecording}
           >
             Save
           </button>

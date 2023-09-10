@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Web3StorageProvider } from "./contexts/Web3StorageContext";
+import { Web3StorageProvider } from "./context/Web3StorageContext";
 const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
